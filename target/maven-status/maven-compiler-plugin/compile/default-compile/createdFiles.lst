@@ -1,0 +1,6 @@
+com\mycompany\teknocaree\dao\CustomerDAO.class
+com\mycompany\teknocaree\JakartaRestConfiguration.class
+com\mycompany\teknocaree\model\Customer.class
+com\mycompany\teknocaree\controller\CustomerController.class
+com\mycompany\teknocaree\util\DBConnection.class
+com\mycompany\teknocaree\resources\JakartaEE11Resource.class

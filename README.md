@@ -29,7 +29,7 @@ Dirancang dengan pendekatan modular dan bersih, TeknoCare mencakup alur mulai da
 * `resources`: Konfigurasi REST (misal `JakartaRestConfiguration.java`).
 * `webapp`: Antarmuka HTML awal, bisa dikembangkan lebih lanjut dengan JSP/JSF.
 
-## 🧱 Contoh Struktur Kelas
+## Contoh Struktur Kelas
 
 * `Customer`: Menyimpan info pelanggan (nama dan kontak).
 * `Teknisi`: Menangani layanan dan memiliki fungsi pemilihan teknisi otomatis.

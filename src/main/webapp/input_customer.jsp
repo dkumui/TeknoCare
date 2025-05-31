@@ -11,7 +11,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Input Customer</title>
-    <!-- Bootstrap 5 CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
@@ -63,7 +62,6 @@
     </div>
 </div>
 
-<!-- Bootstrap JS Bundle (Optional, for interactivity) -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>

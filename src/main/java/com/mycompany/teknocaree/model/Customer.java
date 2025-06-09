@@ -1,13 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.mycompany.teknocaree.model;
-
-/**
- *
- * @author Azka
- */
 
 public class Customer {
     private int id;
@@ -22,7 +13,6 @@ public class Customer {
         this.kontak = kontak;
     }
 
-    // Getter dan Setter
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
 

@@ -1,51 +1,131 @@
-# **TeknoCare – Sistem Manajemen Layanan Servis Komputer**
+# TeknoCare – Sistem Manajemen Layanan Servis Komputer
 
-**TeknoCare** adalah aplikasi berbasis Java yang berfungsi sebagai sistem informasi sederhana untuk menangani layanan servis perangkat komputer, khususnya **Laptop** dan **PC**. Aplikasi ini memanfaatkan prinsip **Object-Oriented Programming (OOP)** dan arsitektur **berbasis komponen** menggunakan **Jakarta EE** (Java Enterprise Edition).
+**TeknoCare** adalah aplikasi web berbasis Java yang dirancang sebagai sistem informasi untuk mengelola alur layanan servis perangkat komputer (Laptop dan PC). Aplikasi ini dibangun dengan prinsip-prinsip **Object-Oriented Programming (OOP)** dan menerapkan arsitektur **Model-View-Controller (MVC)** menggunakan teknologi **Jakarta EE (Servlet & JSP)** serta **Data Access Object (DAO)**.
 
-Dirancang dengan pendekatan modular dan bersih, TeknoCare mencakup alur mulai dari pendaftaran pelanggan, pemilihan layanan, hingga pencatatan teknisi dan pencetakan struk service.
+Sistem ini mencakup seluruh proses bisnis, mulai dari pendaftaran pelanggan baru, pemilihan layanan dari katalog, penugasan teknisi, hingga manajemen status servis dan pembuatan laporan.
 
 ## Fitur Utama
 
-* Input data pelanggan dan kontak.
-* Pilihan jenis layanan servis (laptop atau PC) lengkap dengan jenis kerusakan dan estimasi biaya.
-* Pemilihan teknisi secara otomatis dari daftar teknisi tersedia.
-* Penyimpanan dan pencetakan struk layanan termasuk tanggal servis dan tanggal selesai.
-* Arsitektur berbasis controller-model (mirip MVC) dan pemisahan logika ke dalam DAO.
+- **Manajemen Pelanggan**  
+  Pendaftaran pelanggan baru dan pencarian pelanggan yang sudah ada.
 
-## Teknologi dan Arsitektur
+- **Katalog Layanan Dinamis**  
+  Admin dapat mengelola (CRUD) daftar layanan yang ditawarkan, termasuk biaya dan deskripsi.
 
-* **Java SE + Jakarta EE 11**
-* **Servlets & REST Resources** (package `controller` dan `resources`)
-* **Data Access Object (DAO)** pattern untuk manipulasi data
-* **JPA (Java Persistence API)** untuk persistence (lihat `persistence.xml`)
-* **HTML (webapp/index.html)** untuk antarmuka pengguna awal (placeholder atau pengujian)
+- **Manajemen Teknisi**  
+  Admin dapat mengelola (CRUD) data teknisi, lengkap dengan spesialisasi dan status ketersediaan.
 
-## Struktur Kode (Folder dan Package)
+- **Proses Servis Terstruktur**  
+  Alur yang jelas untuk membuat order servis baru, mulai dari pemilihan pelanggan, jenis perangkat, hingga detail kerusakan.
 
-* `controller`: Logika untuk menangani request dari client (REST API atau Form).
-* `dao`: Kelas untuk interaksi database (contoh: `CustomerDAO.java`).
-* `model`: Entitas Java seperti `Customer`, `LayananService`, `Teknisi`, dll.
-* `util`: Kelas utilitas, seperti `DBConnection.java` untuk koneksi database.
-* `resources`: Konfigurasi REST (misal `JakartaRestConfiguration.java`).
-* `webapp`: Antarmuka HTML awal, bisa dikembangkan lebih lanjut dengan JSP/JSF.
+- **Manajemen Struk Servis**  
+  Admin dapat melacak dan memperbarui status setiap order servis (misalnya: "Baru Masuk", "Dikerjakan", "Selesai").
 
-## Contoh Struktur Kelas
+- **Dashboard Admin Informatif**  
+  Menyajikan ringkasan data penting seperti total pelanggan, jumlah servis berdasarkan status, dan total pendapatan.
 
-* `Customer`: Menyimpan info pelanggan (nama dan kontak).
-* `Teknisi`: Menangani layanan dan memiliki fungsi pemilihan teknisi otomatis.
-* `LayananService` (abstract): Superclass untuk `ServiceLaptop` dan `ServicePC`.
-* `Struk`: Mewakili nota layanan, berisi customer, layanan, teknisi, dan tanggal.
+- **Pemisahan Hak Akses**  
+  Terdapat halaman khusus untuk admin yang dilindungi untuk melakukan manajemen data master.
 
-### Class Diagram
+---
 
-![UML Class Diagram PBO](https://github.com/user-attachments/assets/3f424494-350a-49b0-8852-adef9091b18d)
+## Arsitektur & Teknologi
 
-## Screenshot Tampilan Aplikasi
+| Kategori     | Teknologi / Pola Desain              |
+|--------------|--------------------------------------|
+| **Bahasa**   | Java 17                              |
+| **Platform** | Jakarta EE 11                        |
+| **Web**      | Servlet, JSP, JSTL                   |
+| **Database** | MySQL                                |
+| **Build Tool** | Apache Maven                       |
+| **Arsitektur** | MVC-like (Controller: Servlet, View: JSP, Model: POJO) |
+| **Pola Akses Data** | Data Access Object (DAO)     |
+| **Frontend** | HTML, CSS, JavaScript                |
+| **Server**   | Apache Tomcat                        |
 
-![image](https://github.com/user-attachments/assets/e4280fcd-26e6-469f-aa7b-fdba7644abef)
 
-## Kontributor Proyek
+## Diagram Sistem
 
-* @dkumui
-* @xyzall1
-* @ardelialaksita
+### 1. Diagram Kelas
+Menunjukkan kelas-kelas Java utama dalam proyek dan bagaimana mereka berinteraksi.  
+![Editor _ Mermaid Chart-2025-06-09-190303](https://github.com/user-attachments/assets/e7a532cd-9bd0-4a5a-9b74-975d9b045074)
+
+## Screenshot Website
+![image](https://github.com/user-attachments/assets/d3f0de36-a035-4ff3-b96c-d1bac974b46d)
+
+## Cara Menjalankan Proyek
+
+### Prasyarat
+
+- JDK 17 atau versi lebih baru
+- Apache Maven 3.6+
+- MySQL Server atau MariaDB
+- Apache Tomcat 10.1+ (kompatibel dengan Jakarta EE 11)
+
+### Langkah-langkah Instalasi
+
+1. **Clone Repositori**
+   ```bash
+   git clone https://github.com/dkumui/teknocare.git
+   cd teknocare
+
+2. **Siapkan Database**
+
+   * Buka phpMyAdmin / DBeaver / MySQL Workbench
+   * Buat database baru bernama `teknocare`
+   * Import file `teknocare.sql` dari root project
+
+3. **Konfigurasi Koneksi Database**
+   Ubah file `src/main/java/com/mycompany/teknocaree/util/DBConnection.java`:
+
+   ```java
+   private static final String URL = "jdbc:mysql://localhost:3306/teknocare";
+   private static final String USER = "root";
+   private static final String PASS = ""; // Sesuaikan password Anda
+   ```
+
+4. **Build Proyek**
+
+   ```bash
+   mvn clean install
+   ```
+
+5. **Deploy Aplikasi**
+
+   * Salin file `.war` dari `target/` ke folder `webapps/` di dalam instalasi Tomcat.
+   * Jalankan server Tomcat.
+
+6. **Akses Aplikasi**
+
+   ```
+   http://localhost:8080/TeknoCaree/
+   ```
+
+## Struktur Proyek
+
+```
+TeknoCare/
+├── src/main/
+│   ├── java/com/mycompany/teknocaree/
+│   │   ├── controller/     # Servlet (logika bisnis)
+│   │   │   └── admin/      # Servlet khusus untuk admin
+│   │   ├── dao/            # Data Access Objects
+│   │   ├── model/          # POJO dan DTO
+│   │   │   └── dto/
+│   │   └── util/           # Kelas utilitas (DB connection)
+│   ├── resources/          # Konfigurasi (persistence.xml)
+│   └── webapp/             # Konten Web
+│       ├── admin/          # JSP admin
+│       ├── css/
+│       ├── js/
+│       ├── WEB-INF/
+│       └── *.jsp
+├── pom.xml                 # File Maven
+└── teknocare.sql           # Database skema & data awal
+```
+
+## Kontributor
+
+* [@dkumui](https://github.com/dkumui)
+* [@xyzall1](https://github.com/xyzall1)
+* [@ardelialaksita](https://github.com/ardelialaksita)

@@ -1,13 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.mycompany.teknocaree.util;
-
-/**
- *
- * @author Azka
- */
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -18,13 +9,14 @@ public class DBConnection {
     private static final String USER = "root";
     private static final String PASS = "";
 
-    public static Connection getConnection() {
+    public static Connection getConnection() throws SQLException {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             return DriverManager.getConnection(URL, USER, PASS);
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
-            return null;
+        } catch (ClassNotFoundException e) {
+            throw new SQLException("Gagal memuat MySQL JDBC Driver. Pastikan file JAR ada di classpath.", e);
+        } catch (SQLException e) {
+            throw new SQLException("Gagal melakukan koneksi ke database: " + e.getMessage(), e);
         }
     }
 }

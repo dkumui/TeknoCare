@@ -1,70 +1,37 @@
-<%-- 
-    Document   : input_customer.jsp
-    Created on : 1 Jun 2025, 00.49.20
-    Author     : Azka
---%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<jsp:include page="header.jsp">
+    <jsp:param name="title" value="Input Pelanggan"/>
+</jsp:include>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Input Customer</title>
-    <!-- Bootstrap 5 CDN -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            background: linear-gradient(to bottom, #ffffff, #7DFF78);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Segoe UI', sans-serif;
-        }
-        .card {
-            border: none;
-            border-radius: 15px;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-        }
-        .form-label {
-            font-weight: 600;
-        }
-        .btn-custom {
-            background-color: #4CAF50;
-            color: white;
-            font-weight: bold;
-        }
-        .btn-custom:hover {
-            background-color: #45a049;
-        }
-    </style>
-</head>
-<body>
-
-<div class="container">
+<div class="container mt-5">
     <div class="row justify-content-center">
-        <div class="col-md-6 col-lg-5">
-            <div class="card p-4">
-                <h3 class="text-center mb-4">Input Data Customer</h3>
-                <form method="post" action="CustomerController">
-                    <div class="mb-3">
-                        <label for="nama" class="form-label">Nama</label>
-                        <input type="text" class="form-control" id="nama" name="nama" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="kontak" class="form-label">Kontak</label>
-                        <input type="text" class="form-control" id="kontak" name="kontak" required>
-                    </div>
-                    <button type="submit" class="btn btn-custom w-100">Simpan</button>
-                </form>
+        <div class="col-md-7">
+
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="mb-0">Langkah 1: Input Data Pelanggan</h3>
+                </div>
+                <div class="card-body">
+                    <p class="card-text text-muted">Silakan masukkan nama dan kontak pelanggan yang akan melakukan servis.</p>
+                    <form action="CustomerController" method="post" onsubmit="return validasiFormPelanggan();">
+                        <div class="mb-3">
+                            <label for="nama" class="form-label"><strong>Nama Pelanggan</strong></label>
+                            <input type="text" class="form-control" id="nama" name="nama" required>
+                            <div id="namaError" class="invalid-feedback">Nama tidak boleh kosong.</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="kontak" class="form-label"><strong>Kontak (No. HP atau Email)</strong></label>
+                            <input type="text" class="form-control" id="kontak" name="kontak" required>
+                            <div id="kontakError" class="invalid-feedback">Format kontak tidak valid.</div>
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary btn-lg">Lanjutkan ke Pilih Layanan <i class="fas fa-arrow-right"></i></button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
-<!-- Bootstrap JS Bundle (Optional, for interactivity) -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-</body>
-</html>
+<jsp:include page="footer.jsp"/>

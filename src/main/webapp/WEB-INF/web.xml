@@ -1,24 +1,151 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
-         version="6.0">
-    
+<web-app version="6.0" xmlns="https://jakarta.ee/xml/ns/jakartaee" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd">
     <display-name>TeknoCare</display-name>
     
     <welcome-file-list>
-<!--        <welcome-file>index.html</welcome-file>-->
-        <welcome-file>input_customer.jsp</welcome-file>
+        <welcome-file>pilih_customer.jsp</welcome-file>
+        <welcome-file>index.html</welcome-file>
     </welcome-file-list>
     
+    <filter>
+        <filter-name>CharacterEncodingFilter</filter-name>
+        <filter-class>org.apache.catalina.filters.SetCharacterEncodingFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+        <init-param>
+            <param-name>ignore</param-name>
+            <param-value>false</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>CharacterEncodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
     <servlet>
         <servlet-name>CustomerController</servlet-name>
-        <servlet-class>com.mycompany.teknocaree.controller.CustomerController</servlet-class>
+        <servlet-class>com.mycompany.teknocaree.controller.CustomerServlet</servlet-class>
     </servlet>
-
     <servlet-mapping>
         <servlet-name>CustomerController</servlet-name>
         <url-pattern>/CustomerController</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>ServiceController</servlet-name>
+        <servlet-class>com.mycompany.teknocaree.controller.ServiceServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServiceController</servlet-name>
+        <url-pattern>/ServiceController</url-pattern>
+    </servlet-mapping>
 
-</web-app>
+    <servlet>
+        <servlet-name>ManageCustomerServlet</servlet-name>
+        <servlet-class>com.mycompany.teknocaree.controller.ManageCustomerServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ManageCustomerServlet</servlet-name>
+        <url-pattern>/manageCustomer</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>ManageStrukServletPublic</servlet-name>
+        <servlet-class>com.mycompany.teknocaree.controller.ManageStrukServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ManageStrukServletPublic</servlet-name>
+        <url-pattern>/manageStruk</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ListCustomerServlet</servlet-name>
+        <servlet-class>com.mycompany.teknocaree.controller.ListCustomerServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ListCustomerServlet</servlet-name>
+        <url-pattern>/ListCustomerServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ListStrukServlet</servlet-name>
+        <servlet-class>com.mycompany.teknocaree.controller.ListStrukServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ListStrukServlet</servlet-name>
+        <url-pattern>/ListStrukServlet</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>AdminDashboardServlet</servlet-name>
+        <servlet-class>com.mycompany.teknocaree.controller.admin.AdminDashboardServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdminDashboardServlet</servlet-name>
+        <url-pattern>/admin/dashboard</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ManageTeknisiServlet</servlet-name>
+        <servlet-class>com.mycompany.teknocaree.controller.admin.ManageTeknisiServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ManageTeknisiServlet</servlet-name>
+        <url-pattern>/admin/manageTeknisi</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ManageLayananKatalogServlet</servlet-name>
+        <servlet-class>com.mycompany.teknocaree.controller.admin.ManageLayananKatalogServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ManageLayananKatalogServlet</servlet-name>
+        <url-pattern>/admin/manageLayananKatalog</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ManageStrukServlet</servlet-name>
+        <servlet-class>com.mycompany.teknocaree.controller.admin.ManageStrukServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ManageStrukServlet</servlet-name>
+        <url-pattern>/admin/manageStruk</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>LaporanServisServlet</servlet-name>
+        <servlet-class>com.mycompany.teknocaree.controller.admin.LaporanServisServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LaporanServisServlet</servlet-name>
+        <url-pattern>/admin/laporanServis</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>jakarta.ws.rs.core.Application</servlet-name>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>jakarta.ws.rs.core.Application</servlet-name>
+        <url-pattern>/resources/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>DeleteServlet</servlet-name>
+        <servlet-class>com.mycompany.teknocaree.controller.DeleteServlet</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>DeleteServlet</servlet-name>
+        <url-pattern>/delete</url-pattern>
+    </servlet-mapping>
+    
+    <session-config>
+        <session-timeout>30</session-timeout> </session-config>
+    
+    </web-app>

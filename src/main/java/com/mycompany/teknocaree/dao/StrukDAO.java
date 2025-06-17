@@ -119,6 +119,33 @@ public class StrukDAO {
         }
         return strukList;
     }
+    
+    public static StrukDTO getStrukDTOById(int id) {
+        StrukDTO dto = null;
+        String sql = "SELECT s.id as struk_id, c.nama as customer_nama, c.kontak as customer_kontak, " +
+                     "ls.jenis_layanan as layanan_jenis, ls.jenis_kerusakan as layanan_kerusakan, ls.biaya_service as layanan_biaya, " +
+                     "t.nama_teknisi as teknisi_nama, s.tanggal_service as struk_tgl_service, s.tanggal_jadi as struk_tgl_jadi, " +
+                     "s.status_servis as struk_status, s.catatan_teknisi as struk_catatan " +
+                     "FROM struk s " +
+                     "JOIN customer c ON s.customer_id = c.id " +
+                     "JOIN layanan_service ls ON s.layanan_id = ls.id " +
+                     "JOIN teknisi t ON s.teknisi_id = t.id " +
+                     "WHERE s.id = ?";
+
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                dto = mapResultSetToStrukDTO(rs);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return dto;
+    }
 
     public static boolean updateStatusServis(int strukId, String status, String catatanTeknisi) {
         String sql = "UPDATE struk SET status_servis = ?, catatan_teknisi = ? WHERE id = ?";
